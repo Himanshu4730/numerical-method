@@ -2,13 +2,14 @@
 #include <math.h>
 
 float f(float x) {
-    return x*x - 4;   
+    return x*x - 4;
 }
 
 int main() {
     float a = 0, b = 3, c;
+    int i;
 
-    while (fabs(a - b) > 0.01) {
+    for(i = 0; i < 20; i++) {   // fixed number of iterations
         c = (a + b) / 2;
 
         if (f(c) == 0)
@@ -17,6 +18,9 @@ int main() {
             b = c;
         else
             a = c;
+
+        if (fabs(a - b) < 0.01)   // stopping condition
+            break;
     }
 
     printf("Root = %.2f", c);
